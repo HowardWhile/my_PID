@@ -224,10 +224,10 @@ namespace my_pid
             this.num_ki.Size = new System.Drawing.Size(64, 22);
             this.num_ki.TabIndex = 2;
             this.num_ki.Value = new decimal(new int[] {
-            1,
+            50,
             0,
             0,
-            131072});
+            65536});
             this.num_ki.ValueChanged += new System.EventHandler(this.num_ValueChanged);
             // 
             // gbox_d

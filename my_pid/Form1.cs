@@ -37,7 +37,7 @@ namespace my_pid
                 (double)this.num_kp.Value,
                 (double)this.num_ki.Value,
                 (double)this.num_kd.Value,
-                tbar_interval_ms.Value);
+                tbar_interval_ms.Value/1000.0);
         }
 
         double controller_output = 0.0;

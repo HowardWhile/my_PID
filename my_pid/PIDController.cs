@@ -31,8 +31,8 @@ namespace AIM.Modules
         public double Update_Once(double setpoint, double feedback)
         {
             this.error = setpoint - feedback;
-            this.integral = this.integral + (error * this.dT);
-            this.derivative = (this.error - this.per_err) / this.dT;
+            this.integral = this.kI == 0 ? 0 : this.integral + (error * this.dT);
+            this.derivative = this.kD == 0 ? 0: (this.error - this.per_err) / this.dT;
 
             return this.kP * error + this.kI * integral + this.kD * derivative;
         }

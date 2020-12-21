@@ -53,6 +53,7 @@ namespace my_pid
             this.gbox_setpoint = new System.Windows.Forms.GroupBox();
             this.tbar_setpoint = new System.Windows.Forms.TrackBar();
             this.tmr_plant_sim = new System.Windows.Forms.Timer(this.components);
+            this.ckbox_stop_controller = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.num_kp)).BeginInit();
             this.gbox_p.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -78,9 +79,9 @@ namespace my_pid
             this.chart_pid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chart_pid.Location = new System.Drawing.Point(278, 12);
+            this.chart_pid.Location = new System.Drawing.Point(278, 30);
             this.chart_pid.Name = "chart_pid";
-            this.chart_pid.Size = new System.Drawing.Size(420, 349);
+            this.chart_pid.Size = new System.Drawing.Size(408, 317);
             this.chart_pid.TabIndex = 1;
             this.chart_pid.Load += new System.EventHandler(this.chart_pid_Load);
             // 
@@ -295,36 +296,38 @@ namespace my_pid
             this.num_kd.Size = new System.Drawing.Size(64, 22);
             this.num_kd.TabIndex = 2;
             this.num_kd.Value = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
-            0});
+            196608});
             this.num_kd.ValueChanged += new System.EventHandler(this.num_ValueChanged);
             // 
             // tmr_display
             // 
             this.tmr_display.Enabled = true;
             this.tmr_display.Interval = 30;
+            this.tmr_display.Tick += new System.EventHandler(this.tmr_display_Tick);
             // 
             // tbar_interval_ms
             // 
+            this.tbar_interval_ms.AutoSize = false;
             this.tbar_interval_ms.Location = new System.Drawing.Point(6, 21);
             this.tbar_interval_ms.Maximum = 1000;
             this.tbar_interval_ms.Minimum = 1;
             this.tbar_interval_ms.Name = "tbar_interval_ms";
-            this.tbar_interval_ms.Size = new System.Drawing.Size(248, 45);
+            this.tbar_interval_ms.Size = new System.Drawing.Size(248, 15);
             this.tbar_interval_ms.TabIndex = 8;
             this.tbar_interval_ms.TickFrequency = 50;
-            this.tbar_interval_ms.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.tbar_interval_ms.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tbar_interval_ms.Value = 100;
             this.tbar_interval_ms.Scroll += new System.EventHandler(this.tbar_interval_ms_Scroll);
             // 
             // gbox_interval
             // 
             this.gbox_interval.Controls.Add(this.tbar_interval_ms);
-            this.gbox_interval.Location = new System.Drawing.Point(12, 204);
+            this.gbox_interval.Location = new System.Drawing.Point(12, 248);
             this.gbox_interval.Name = "gbox_interval";
-            this.gbox_interval.Size = new System.Drawing.Size(260, 76);
+            this.gbox_interval.Size = new System.Drawing.Size(260, 48);
             this.gbox_interval.TabIndex = 9;
             this.gbox_interval.TabStop = false;
             this.gbox_interval.Text = "Interval 100ms";
@@ -332,25 +335,26 @@ namespace my_pid
             // gbox_setpoint
             // 
             this.gbox_setpoint.Controls.Add(this.tbar_setpoint);
-            this.gbox_setpoint.Location = new System.Drawing.Point(12, 286);
+            this.gbox_setpoint.Location = new System.Drawing.Point(12, 204);
             this.gbox_setpoint.Name = "gbox_setpoint";
-            this.gbox_setpoint.Size = new System.Drawing.Size(260, 76);
+            this.gbox_setpoint.Size = new System.Drawing.Size(260, 42);
             this.gbox_setpoint.TabIndex = 10;
             this.gbox_setpoint.TabStop = false;
             this.gbox_setpoint.Text = "setpoint 0";
             // 
             // tbar_setpoint
             // 
+            this.tbar_setpoint.AutoSize = false;
             this.tbar_setpoint.LargeChange = 100;
             this.tbar_setpoint.Location = new System.Drawing.Point(6, 21);
             this.tbar_setpoint.Maximum = 1000;
             this.tbar_setpoint.Minimum = -1000;
             this.tbar_setpoint.Name = "tbar_setpoint";
-            this.tbar_setpoint.Size = new System.Drawing.Size(248, 45);
+            this.tbar_setpoint.Size = new System.Drawing.Size(248, 15);
             this.tbar_setpoint.SmallChange = 10;
             this.tbar_setpoint.TabIndex = 8;
             this.tbar_setpoint.TickFrequency = 50;
-            this.tbar_setpoint.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.tbar_setpoint.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tbar_setpoint.Scroll += new System.EventHandler(this.tbar_setpoint_Scroll);
             // 
             // tmr_plant_sim
@@ -359,17 +363,31 @@ namespace my_pid
             this.tmr_plant_sim.Interval = 1;
             this.tmr_plant_sim.Tick += new System.EventHandler(this.tmr_plant_sim_Tick);
             // 
+            // ckbox_stop_controller
+            // 
+            this.ckbox_stop_controller.Appearance = System.Windows.Forms.Appearance.Button;
+            this.ckbox_stop_controller.AutoSize = true;
+            this.ckbox_stop_controller.Location = new System.Drawing.Point(278, 2);
+            this.ckbox_stop_controller.Name = "ckbox_stop_controller";
+            this.ckbox_stop_controller.Size = new System.Drawing.Size(73, 22);
+            this.ckbox_stop_controller.TabIndex = 11;
+            this.ckbox_stop_controller.Text = "Stop Process";
+            this.ckbox_stop_controller.UseVisualStyleBackColor = true;
+            this.ckbox_stop_controller.CheckedChanged += new System.EventHandler(this.ckbox_stop_controller_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 373);
-            this.Controls.Add(this.gbox_setpoint);
+            this.ClientSize = new System.Drawing.Size(698, 359);
+            this.Controls.Add(this.ckbox_stop_controller);
             this.Controls.Add(this.gbox_interval);
+            this.Controls.Add(this.gbox_setpoint);
             this.Controls.Add(this.gbox_d);
             this.Controls.Add(this.gbox_i);
             this.Controls.Add(this.gbox_p);
             this.Controls.Add(this.chart_pid);
+            this.MinimumSize = new System.Drawing.Size(530, 340);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -387,11 +405,10 @@ namespace my_pid
             ((System.ComponentModel.ISupportInitialize)(this.num_kd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar_interval_ms)).EndInit();
             this.gbox_interval.ResumeLayout(false);
-            this.gbox_interval.PerformLayout();
             this.gbox_setpoint.ResumeLayout(false);
-            this.gbox_setpoint.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbar_setpoint)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -419,6 +436,7 @@ namespace my_pid
         private System.Windows.Forms.GroupBox gbox_setpoint;
         private System.Windows.Forms.TrackBar tbar_setpoint;
         private System.Windows.Forms.Timer tmr_plant_sim;
+        private System.Windows.Forms.CheckBox ckbox_stop_controller;
     }
 }
 

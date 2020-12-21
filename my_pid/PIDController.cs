@@ -26,23 +26,26 @@ namespace AIM.Modules
             this.dT = second;
         }
 
-        public double kP, kI, kD;
         public double dT; // s
 
-        double CtlOnce(double setpoint, double feedback)
+        public double Update_Once(double setpoint, double feedback)
         {
             this.error = setpoint - feedback;
-            this.integral = this.integral + (error * this.dT);
-            this.derivative = (this.error - this.per_err) / this.dT;
+            this.integral = this.kI == 0 ? 0 : this.integral + (error * this.dT);
+            this.derivative = this.kD == 0 ? 0: (this.error - this.per_err) / this.dT;
 
             return this.kP * error + this.kI * integral + this.kD * derivative;
         }
 
         private double integral = 0.0;
         private double derivative = 0.0;
-        private double error, per_err;
-       
+        private double error = 0.0;
+        private double per_err = 0.0;
 
+        private double kP, kI, kD;
 
+        public double Integral { get => integral; }
+        public double Derivative { get => derivative; }
+        public double Error { get => error; }
     }
 }

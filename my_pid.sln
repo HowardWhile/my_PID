@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "my_pid", "my_pid\my_pid.csproj", "{834BAF3B-C186-4333-BDC0-CDA0D3F7A2B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PID_Example", "PID_Test001\PID_Example.csproj", "{2405FB54-04EF-4678-8303-06BB5722549C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PID_Example_2009", "PID_Test001\PID_Example_2009.csproj", "{2405FB54-04EF-4678-8303-06BB5722549C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
